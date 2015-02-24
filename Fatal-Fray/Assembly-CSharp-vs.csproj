@@ -46,14 +46,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GameManager.cs" />
      <Compile Include="Assets\Scripts\AttackScript.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\HitboxScript.cs" />
      <Compile Include="Assets\Scripts\MeleeAttackScript.cs" />
      <Compile Include="Assets\Scripts\MovementScript.cs" />
      <Compile Include="Assets\Scripts\PlatformScript.cs" />
      <Compile Include="Assets\Scripts\ShootScript.cs" />
      <Compile Include="Assets\Scripts\StaminaScript.cs" />
+     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>

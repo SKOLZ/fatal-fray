@@ -10,7 +10,7 @@ public class HitboxScript : MonoBehaviour {
 	public float damage;
 
 	void OnTriggerEnter(Collider collider) {
-		if (collider.gameObject.tag.Equals ("Player")) {
+		if (collider.gameObject.tag.Equals ("Player") && collider.gameObject != transform.parent.gameObject) {
 			string dir = ((collider.transform.position.x - hitter.transform.position.x) > 0) ? "left" : "right";
 			StaminaScript otherStamina = collider.GetComponent<StaminaScript> ();
 			otherStamina.GetHit (knockback, damage, dir);
