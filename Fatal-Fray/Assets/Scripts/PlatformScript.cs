@@ -4,8 +4,6 @@ using System.Collections;
 public class PlatformScript : MonoBehaviour {
 
 	void OnCollisionExit(Collision col) {
-		if(col.collider.gameObject.tag.Equals("Player"))
-			col.collider.GetComponent<Animator>().SetBool ("air", true);
 	}
 
 	void OnCollisionEnter(Collision col) {

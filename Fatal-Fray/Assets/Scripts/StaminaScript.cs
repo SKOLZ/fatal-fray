@@ -24,12 +24,14 @@ public class StaminaScript : MonoBehaviour {
 		currentStamina = maxStamina;
 	}
 	
-	public void GetHit(float knockback, float damage, string direction) {
+	public void GetHit(float knockback, float damage, float verticalFactor, string direction) {
+		float trueKnockback = knockbackByStamina (knockback);
+		float trueVFactor = vFactorByStamina (verticalFactor);
 		currentStamina -= damage;
 		if (direction == "left") {
-			rigidBody.velocity = new Vector3 (knockback, rigidBody.velocity.y, 0f);
+			rigidBody.velocity = new Vector3 (trueKnockback, rigidBody.velocity.y + trueKnockback * trueVFactor, 0f);
 		} else if (direction == "right") {
-			rigidBody.velocity = new Vector3(-knockback, rigidBody.velocity.y, 0f);
+			rigidBody.velocity = new Vector3(-trueKnockback, rigidBody.velocity.y + trueKnockback * trueVFactor, 0f);
 		}
 
 		if (moveScript.GetFacingDirection () == "left") {
@@ -39,6 +41,16 @@ public class StaminaScript : MonoBehaviour {
 		}
 		anim.SetBool ("control", false);
 		Invoke ("recover", recoveryTime);
+	}
+
+	float knockbackByStamina(float baseKnockback) {
+		float staminaPercentage = currentStamina / maxStamina;
+		return baseKnockback / (1 + staminaPercentage);
+	}
+
+	float vFactorByStamina(float baseVFactor) {
+		float staminaPercentage = currentStamina / maxStamina;
+		return baseVFactor / (1 + staminaPercentage);
 	}
 
 	void recover() {
@@ -55,6 +67,7 @@ public class StaminaScript : MonoBehaviour {
 	}
 
 	void respawn() {
+		currentStamina = maxStamina;
 		transform.position = gameManager.getRespawnPoint();
 	}
 
