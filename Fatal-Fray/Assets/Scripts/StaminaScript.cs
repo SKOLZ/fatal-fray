@@ -69,6 +69,7 @@ public class StaminaScript : MonoBehaviour {
 	void respawn() {
 		currentStamina = maxStamina;
 		transform.position = gameManager.getRespawnPoint();
+		rigidBody.velocity = new Vector3(0f, 0f, 0f);
 	}
 
 	public bool isEliminated() {
